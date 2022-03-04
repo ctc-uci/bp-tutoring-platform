@@ -1,6 +1,6 @@
 import './Calendar.css';
 
-import Calendar from 'react-calendar'
+import Calendar from 'react-calendar';
 
 function CalendarPage() {
   return (
