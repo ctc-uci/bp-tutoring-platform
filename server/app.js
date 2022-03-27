@@ -4,6 +4,10 @@ const cors = require('cors');
 
 require('dotenv').config();
 
+// Importing route sub-modules from their respective files
+const appointments = require('./routes/appointments');
+const users = require('./routes/users');
+
 // Connecting via mongoose
 const mongoURI = process.env.MONGO_URI;
 mongoose.connect(mongoURI, {
@@ -25,6 +29,11 @@ app.use(cors({ origin: `${process.env.REACT_APP_HOST}:${process.env.REACT_APP_PO
 // Express.json() allows a request body to be passed into our backend routes
 app.use(express.json());
 
+// Setting up route sub-modules in our express app
+app.use('/appointments', appointments);
+app.use('/users', users);
+
+// Starting the express app
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
