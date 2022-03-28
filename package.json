@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "format": "prettier --write \"**/*.+(js|jsx|css)\""
+  },
+  "dependencies": {
+    "prettier": "^2.6.1"
+  }
+}

@@ -5,7 +5,7 @@ import Calendar from 'react-calendar';
 function CalendarPage() {
   return (
     <div>
-    <Calendar/>
+      <Calendar />
     </div>
   );
 }
