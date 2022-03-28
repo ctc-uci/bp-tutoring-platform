@@ -46,16 +46,26 @@ router.post('/', (req, res) => {
 //           the new appointment info (under a "new" object) to update a found appointment
 // RETURNS: Updated appointment object
 router.put('/', (req, res) => {
+  const { tutorEmail, studentEmail, startTime, endTime } = req.body.old;
   const {
-    old: { tutorEmail, studentEmail, startTime, endTime },
-    new: { newTutorEmail, newStudentEmail, newStartTime, newEndTime, newNote },
-  } = req.body;
-  if (!tutorEmail || !studentEmail || !startTime || !endTime || !note) {
+    tutorEmail: newTutorEmail,
+    studentEmail: newStudentEmail,
+    startTime: newStartTime,
+    endTime: newEndTime,
+    note: newNote,
+  } = req.body.updated;
+  if (!tutorEmail || !studentEmail || !startTime || !endTime) {
     res.status(400).json({ error: 'Missing required fields' });
   }
   Appointment.findOneAndUpdate(
     { tutorEmail, studentEmail, startTime, endTime },
-    { newTutorEmail, newStudentEmail, newStartTime, newEndTime, newNote },
+    {
+      tutorEmail: newTutorEmail,
+      studentEmail: newStudentEmail,
+      startTime: newStartTime,
+      endTime: newEndTime,
+      note: newNote,
+    },
     { new: true },
     (err, appt) => {
       if (err) {
@@ -74,11 +84,11 @@ router.put('/', (req, res) => {
 // REQ BODY: Appointment's info (tutor email, student email, startTime and endTime (in seconds after epoch))
 // RETURNS: The deleted appointment object
 router.delete('/', (req, res) => {
-  const { tutorEmail, studentEmail, startTime, endTime, note } = req.body;
-  if (!tutorEmail || !studentEmail || !startTime || !endTime || !note) {
+  const { tutorEmail, studentEmail, startTime, endTime } = req.body;
+  if (!tutorEmail || !studentEmail || !startTime || !endTime) {
     res.status(400).json({ error: 'Missing required fields' });
   }
-  Appointment.deleteOne({ tutorEmail, studentEmail, startTime, endTime, note }, (err, appt) => {
+  Appointment.deleteOne({ tutorEmail, studentEmail, startTime, endTime }, (err, appt) => {
     if (err) {
       // console.log(err);
       res.status(400).json({ error: 'Error deleting appointment' });

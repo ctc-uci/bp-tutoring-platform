@@ -68,7 +68,7 @@ router.put('/:email', (req, res) => {
   if (!email || !name || !role) {
     res.status(400).json({ error: 'Missing required fields' });
   }
-  User.findOneAndUpdate({ email }, { name, role }, { new: true }, (err, user) => {
+  User.findOneAndUpdate({ email }, { name, userType: role }, { new: true }, (err, user) => {
     if (err) {
       // console.log(err);
       res.status(400).json({ error: 'Error updating user' });
