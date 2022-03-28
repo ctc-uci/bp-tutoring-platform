@@ -25,7 +25,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // CORS is needed so that our frontend can connect to our backend smoothly
-app.use(cors({ origin: `${process.env.REACT_APP_HOST}:${process.env.REACT_APP_PORT}`}));
+app.use(cors({ origin: `${process.env.REACT_APP_HOST}:${process.env.REACT_APP_PORT}` }));
 // Express.json() allows a request body to be passed into our backend routes
 app.use(express.json());
 
