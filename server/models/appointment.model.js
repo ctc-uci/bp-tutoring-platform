@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 
 const appointmentSchema = new mongoose.Schema({
-  tutor_email: { type: String, required: true },
-  student_email: { type: String, required: true },
-  start_time: { type: Date, required: true },
-  end_time: { type: Date, required: true },
+  tutorEmail: { type: String, required: true },
+  studentEmail: { type: String, required: true },
+  startTime: { type: Number, required: true },
+  endTime: { type: Number, required: true },
   note: { type: String },
 });
 
