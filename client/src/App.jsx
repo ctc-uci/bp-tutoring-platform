@@ -1,13 +1,12 @@
 import React from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
-import './pages/Calendar.jsx';
-import Calendar from './pages/Calendar.jsx';
+import CalendarPage from './pages/Calendar';
 
 function App() {
   return (
     <div className="App">
-      <Calendar />
+      <CalendarPage />
     </div>
   );
 }

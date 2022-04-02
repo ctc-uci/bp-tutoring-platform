@@ -1,3 +1,4 @@
+import React from 'react';
 import './Calendar.css';
 
 import Calendar from 'react-calendar';
