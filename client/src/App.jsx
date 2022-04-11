@@ -6,9 +6,9 @@ import Calendar from './pages/Calendar.jsx';
 
 function App() {
   return (
-    <div className="App">
-      <Calendar/>
-    </div>
+  <div>
+    <Calendar/>
+  </div>
   );
 }
 
