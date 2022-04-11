@@ -1,9 +1,9 @@
-import React from 'react';
-import './Calendar.css';
-import { render } from 'react-dom';
 import React, { useState } from 'react';
+import { render } from 'react-dom';
 import Calendar from 'react-calendar';
-import Modal from '../components/Modal.jsx';
+
+import './Calendar.css';
+import Modal from '../components/Modal';
 
 function CalendarPage() {
   return (
@@ -31,7 +31,6 @@ const ReactCalendar = () => {
           day={date.getDate().toString()}
         />
       )}
-      {console.log(date)}
     </div>
   );
 };
