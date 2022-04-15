@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { render } from 'react-dom';
 import Calendar from 'react-calendar';
 import './Calendar.css';
 import Modal from '../components/Modal';
@@ -20,6 +19,7 @@ const ReactCalendar = () => {
           closeModal={setOpenModal}
           month={date.getMonth().toString()}
           day={date.getDate().toString()}
+          year={date.getFullYear().toString()}
         />
       )}
     </div>
