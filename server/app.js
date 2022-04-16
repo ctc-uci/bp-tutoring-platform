@@ -7,6 +7,8 @@ require('dotenv').config();
 // Importing route sub-modules from their respective files
 const appointments = require('./routes/appointments');
 const users = require('./routes/users');
+const timeslots = require('./routes/timeslots');
+
 
 // Connecting via mongoose
 const mongoURI = process.env.MONGO_URI;
@@ -32,6 +34,8 @@ app.use(express.json());
 // Setting up route sub-modules in our express app
 app.use('/appointments', appointments);
 app.use('/users', users);
+app.use('/timeslots', timeslots);
+
 
 // Starting the express app
 app.listen(PORT, () => {

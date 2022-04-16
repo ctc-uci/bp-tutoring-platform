@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 const timeslotSchema = new mongoose.Schema({
-  possibleTimes: { type: Array, requried: true},
-  userEmail: { type: String, required: true},
+  timeslots: { type: Array, requried: true},
+  email: { type: String, required: true},
 });
 
 const Timeslot = mongoose.model('Timeslot', timeslotSchema);

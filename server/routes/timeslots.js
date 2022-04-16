@@ -1,7 +1,7 @@
 const { Router } = require('express');
 
 // Check name of timeslot.model with Alan
-const Timeslot = require('../models/timeslot.model');
+const Timeslot = require('../models/timeslots.model');
 
 const router = Router();
 
@@ -28,7 +28,7 @@ router.get('/:email', (req, res) => {
   if (!email) {
     res.status(400).json({ error: 'No email supplied' });
   }
-  TImeslot.find({ email }, (err, tslots) => {
+  Timeslot.find({ email }, (err, tslots) => {
     if (err) {
       // console.log(err);
       res.status(400).json({ error: 'Error fetching timeslots' });
@@ -66,11 +66,11 @@ router.post('/', (req, res) => {
 // RETURNS: Updated timeslot object
 router.put('/:email', (req, res) => {
   const { email } = req.params;
-  const { possibleTimes } = req.body;
-  if (!email || !possibleTimes) {
+  const { timeslots } = req.body;
+  if (!email || !timeslots) {
     res.status(400).json({ error: 'Missing required fields' });
   }
-  Timeslot.findOneAndUpdate({ email }, { possibleTimes, userType: role }, { new: true }, (err, tslot) => {
+  Timeslot.findOneAndUpdate({ email }, { timeslots, userType: role }, { new: true }, (err, tslot) => {
     if (err) {
       // console.log(err);
       res.status(400).json({ error: 'Error updating timeslots' });

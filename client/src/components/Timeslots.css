@@ -1,0 +1,53 @@
+.timeslots {
+  width: 300px;
+  margin: 5px auto;
+  position: relative;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.timeslots .timeslots-btn {
+  padding: 15px 20px;
+  background: white;
+  box-shadow: 3px 3px 10px 6px rgb(205, 205, 205);
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.timeslots .times-list {
+  top: 110%;
+  left: 0;
+  padding: 10px;
+  background: white;
+  box-shadow: 3px 3px 10px 6px rgb(205, 205, 205);
+  font-weight: 500;
+  color: rgb(52, 52, 52);
+  width: 93.3%;
+  z-index: 1;
+  position: absolute;
+}
+
+.timeslots .times-list .time {
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.timeslots .times-list .time:hover {
+  background: #e5ddf8;
+}
+
+.arrow {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}

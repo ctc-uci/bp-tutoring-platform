@@ -1,14 +1,29 @@
-import React from 'react';
-import './Calendar.css';
-
+import React, { useState } from 'react';
 import Calendar from 'react-calendar';
+import './Calendar.css';
+import Modal from '../components/Modal';
 
-function CalendarPage() {
+const ReactCalendar = () => {
+  const [date, setDate] = useState(new Date());
+  const [openModal, setOpenModal] = useState(false);
+  const onOpenModal = date => {
+    setOpenModal(true);
+    setDate(date);
+  };
+
   return (
     <div>
-      <Calendar />
+      <Calendar onClickDay={onOpenModal} value={date} />
+      {openModal && (
+        <Modal
+          closeModal={setOpenModal}
+          month={date.getMonth().toString()}
+          day={date.getDate().toString()}
+          year={date.getFullYear().toString()}
+        />
+      )}
     </div>
   );
-}
+};
 
-export default CalendarPage;
+export default ReactCalendar;
