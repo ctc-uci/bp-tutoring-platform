@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Modal.css';
 import Timeslots from './Timeslots';
-import { useNavigate } from 'react-router-dom';
 
 function Modal({ closeModal, month, day, year }) {
   let navigate = useNavigate();
