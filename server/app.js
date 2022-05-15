@@ -31,6 +31,19 @@ app.use(cors({ origin: `${process.env.REACT_APP_HOST}:${process.env.REACT_APP_PO
 // Express.json() allows a request body to be passed into our backend routes
 app.use(express.json());
 
+// Fixes the bug that occurs when requests are sent and headers cannot be set
+// which leads to the app crashing
+app.use((req,res,next) => {
+  const _send = res.send;
+  let sent = false;
+  res.send = data => {
+    if(sent) return;
+    _send.bind(res)(data);
+    sent = true;
+  };
+  next();
+});
+
 // Setting up route sub-modules in our express app
 app.use('/appointments', appointments);
 app.use('/users', users);
