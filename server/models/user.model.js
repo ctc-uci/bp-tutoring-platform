@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
-  userType: { type: String, required: true }, // "STUDENT" | "TUTOR" | "ADMIN"
+  role: { type: String, required: true }, // "STUDENT" | "TUTOR" | "ADMIN"
   email: { type: String, required: true },
   password: { type: String }, // hashed in sha256; set to be required later
   name: { type: String, required: true },

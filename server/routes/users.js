@@ -46,6 +46,16 @@ router.post('/', (req, res) => {
   if (!email || !name || !role) {
     res.status(400).json({ error: 'Missing required fields' });
   }
+
+  // Checks for duplicate emails
+  User.find({ email }, (err, users) => {
+    if (!err) {
+      // If there is no email found (which would not throw an error)
+      // then a user with that email exists already
+      res.status(400).json({ error: 'Duplicate emails' });
+    }
+  });
+  // Creates the user
   User.create({ email, name, role }, (err, user) => {
     if (err) {
       // console.log(err);
