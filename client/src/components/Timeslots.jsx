@@ -1,42 +1,45 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import './Timeslots.css';
+import React, { useEffect, useState } from 'react';
+import './TimeSlots.css';
+import moment from 'moment';
 
-
-function Timeslots({ selected, setSelected }) {
+function TimeSlots({ selected, setSelected }) {
+  const [timeSlots, setTimeSlots] = useState([]);
   const [isActive, setIsActive] = useState(false);
-  const times = ['1:00', '2:00', '3:00'];
-
-  CreateTimeslot(times[0], "failedemail@uci.edu")
-
-  const CreateTimeslot = async (timeslot, email) => {
-    const res = await axios.post('http://localhost:3001/timeslots', {
-      timeslots: [timeslot],
-      email: email
-    });
-    if (res.status === 200)
-      alert('Timeslot successfully created')
-    else
-      alert('Timeslot creation failed')
-  }
+  const createTimeSlots = (fromTime, toTime) => {
+    let startTime = moment(fromTime, 'hh:mm A');
+    let endTime = moment(toTime, 'hh:mm A');
+    if (endTime.isBefore(startTime)) {
+      endTime.add(1, 'day');
+    }
+    let arr = [];
+    while (startTime <= endTime) {
+      arr.push(new moment(startTime).format('hh:mm A'));
+      startTime.add(30, 'minutes');
+    }
+    return arr;
+  };
+  useEffect(() => {
+    setTimeSlots(createTimeSlots('12:00 AM', '24:00 AM'));
+  }, []);
 
   return (
-    <div className="timeslots">
-      <div className="timeslots-btn" onClick={e => setIsActive(!isActive)}>
+    <div className="time-slots">
+      <div className="time-slots-btn" onClick={e => setIsActive(!isActive)}>
         {selected}
-        <i class="arrow down"></i>
+        <i className="arrow down"></i>
       </div>
       {isActive && (
         <div className="times-list">
-          {times.map(times => (
+          {timeSlots.map((item, key) => (
             <div
               onClick={e => {
-                setSelected(times);
+                setSelected(item);
                 setIsActive(false);
               }}
               className="time"
+              key={key}
             >
-              {times}
+              {item}
             </div>
           ))}
         </div>
@@ -45,4 +48,4 @@ function Timeslots({ selected, setSelected }) {
   );
 }
 
-export default Timeslots;
+export default TimeSlots;

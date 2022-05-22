@@ -3,6 +3,8 @@
     "format": "prettier --write \"**/*.+(js|jsx|css)\""
   },
   "dependencies": {
+    "axios": "^0.27.2",
+    "moment": "^2.29.3",
     "prettier": "^2.6.1",
     "react-calendar": "^3.7.0",
     "react-router-dom": "^6.3.0"

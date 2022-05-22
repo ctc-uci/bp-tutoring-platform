@@ -10,7 +10,7 @@ function App() {
       <Routes>
         <Route path="/" element={<CalendarPage />} />
         <Route path="confirm" element={<Confirm />} />
-        <Route path="*" element={<p>Page Not Found</p>} />
+        <Route path="*" element={<p>Error: Page Not Found</p>} />
       </Routes>
     </Router>
   );
