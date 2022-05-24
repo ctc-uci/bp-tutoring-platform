@@ -1,31 +1,24 @@
+/* eslint-disable guard-for-in */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable react/prop-types */
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 
 const BookingModal = ({ closeModal, date }) => {
-  const [timeslots, setTimeslots] = useState([]);
+  const timeslots = [];
   useEffect(async () => {
-    console.log(date);
-    setTimeslots([]);
     const res = await axios.get(`http://localhost:3001/timeslots/${'placeholder email'}`);
     if (res.status === 200) {
-      //   console.log(res.data);
-      console.log(date.getTime());
-      console.log(date.getTime() + 24 * 60 * 60 * 1000);
-      res.data.forEach(async timeSlotsObject => {
-        for (const timeslot in timeSlotsObject.timeslots) {
-          if (
-            date.getTime() <=
-            timeSlotsObject.timeslots[timeslot] <=
-            date.getTime() + 24 * 60 * 60 * 1000
-          ) {
-            const foundTimeslot = timeSlotsObject.timeslots[timeslot];
-            setTimeslots([...timeslots, foundTimeslot]);
+      // really scuffed for loop and no useState for now, fix later
+      for (const timeslotsObjectIndex in res.data) {
+        for (const timeslotIndex in res.data[timeslotsObjectIndex].timeslots) {
+          const timeslot = res.data[timeslotsObjectIndex].timeslots[timeslotIndex];
+          if (date.getTime() <= timeslot && timeslot <= date.getTime() + 24 * 60 * 60 * 1000) {
+            timeslots.push(timeslot);
           }
         }
-      });
-      console.log(timeslots);
+      }
+      console.log(timeslots); // These are all in milliseconds after epoch, use native JS date object to convert
     } else {
       console.log('unable to get timeslots');
     }
@@ -37,7 +30,7 @@ const BookingModal = ({ closeModal, date }) => {
         <div className="head">
           <div className="title">
             <h1>
-              Time Selection: {date.month}/{date.date}/{date.year}
+              Time Selection: {date.getMonth() + 1}/{date.getDate()}/{date.getFullYear()}
             </h1>
           </div>
           <div className="closeButton">

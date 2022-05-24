@@ -25,7 +25,7 @@ const Modal = ({ closeModal, date }) => {
         <div className="head">
           <div className="title">
             <h1>
-              Time Selection: {date.getMonth() + 1}/{date.getDay()}/2022
+              Time Selection: {date.getMonth() + 1}/{date.getDate()}/{date.getFullYear()}
             </h1>
           </div>
           <div className="closeButton">
