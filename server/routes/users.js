@@ -49,23 +49,24 @@ router.post('/', (req, res) => {
 
   // Checks for duplicate emails
   User.find({ email }, (err, users) => {
-    if (!err) {
-      // If there is no email found (which would not throw an error)
-      // then a user with that email exists already
+    if (users.length) {
+      // Checks to see if users is already occupied with that email
       res.status(400).json({ error: 'Duplicate emails' });
-    }
-  });
-  // Creates the user
-  User.create({ email, name, role }, (err, user) => {
-    if (err) {
-      // console.log(err);
-      res.status(400).json({ error: 'Error creating user' });
     } else {
-      // console.log('User created: ');
-      // console.log(user);
-      res.json(user);
+      // Creates the user
+      User.create({ email, name, role }, (err, user) => {
+        if (err) {
+          // console.log(err);
+          res.status(400).json({ error: 'Error creating user' });
+        } else {
+          // console.log('User created: ');
+          // console.log(user);
+          res.json(user);
+        }
+      });
     }
   });
+
 });
 
 // A put route to update a user.
