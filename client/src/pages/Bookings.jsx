@@ -6,9 +6,9 @@ import BookingModal from '../components/BookingModal';
 const Bookings = () => {
   const [date, setDate] = useState(new Date());
   const [openModal, setOpenModal] = useState(false);
-  const onOpenModal = date => {
+  const onOpenModal = d => {
     setOpenModal(true);
-    setDate(date);
+    setDate(d);
   };
 
   return (

@@ -6,23 +6,15 @@ import Modal from '../components/Modal';
 const SchedulingCalendar = () => {
   const [date, setDate] = useState(new Date());
   const [openModal, setOpenModal] = useState(false);
-  const onOpenModal = date => {
+  const onOpenModal = d => {
     setOpenModal(true);
-    setDate(date);
+    setDate(d);
   };
 
   return (
     <div>
       <Calendar onClickDay={onOpenModal} value={date} />
-      {openModal && (
-        <Modal
-          closeModal={setOpenModal}
-          date={date}
-          // month={date.getMonth().toString()}
-          // day={date.getDate().toString()}
-          // year={date.getFullYear().toString()}
-        />
-      )}
+      {openModal && <Modal closeModal={() => setOpenModal(false)} date={date} />}
     </div>
   );
 };

@@ -3,7 +3,7 @@ import './Confirm.css';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 function Confirm() {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const times = useLocation();
   return (
     <div className="temp-change-later">
@@ -15,6 +15,7 @@ function Confirm() {
         {times.state.startTime} - {times.state.endTime}
       </div>
       <button
+        type="button"
         onClick={() => {
           navigate('/');
         }}

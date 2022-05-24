@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SchedulingCalendar from './pages/SchedulingCalendar';
 import Confirm from './pages/Confirm';
 import Bookings from './pages/Bookings';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (

@@ -1,17 +1,22 @@
+/* eslint-disable new-cap */
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useEffect, useState } from 'react';
-import './TimeSlots.css';
+import './Timeslots.css';
 import moment from 'moment';
 
-function TimeSlots({ selected, setSelected }) {
+function Timeslots({ selected, setSelected }) {
   const [timeSlots, setTimeSlots] = useState([]);
   const [isActive, setIsActive] = useState(false);
   const createTimeSlots = (fromTime, toTime) => {
-    let startTime = moment(fromTime, 'hh:mm A');
-    let endTime = moment(toTime, 'hh:mm A');
+    const startTime = moment(fromTime, 'hh:mm A');
+    const endTime = moment(toTime, 'hh:mm A');
     if (endTime.isBefore(startTime)) {
       endTime.add(1, 'day');
     }
-    let arr = [];
+    const arr = [];
     while (startTime <= endTime) {
       arr.push(new moment(startTime).format('hh:mm A'));
       startTime.add(30, 'minutes');
@@ -26,18 +31,18 @@ function TimeSlots({ selected, setSelected }) {
     <div className="time-slots">
       <div className="time-slots-btn" onClick={e => setIsActive(!isActive)}>
         {selected}
-        <i className="arrow down"></i>
+        <i className="arrow down" />
       </div>
       {isActive && (
         <div className="times-list">
           {timeSlots.map((item, key) => (
             <div
-              onClick={e => {
+              onClick={_ => {
                 setSelected(item);
                 setIsActive(false);
               }}
               className="time"
-              key={key}
+              key={item}
             >
               {item}
             </div>
@@ -48,4 +53,4 @@ function TimeSlots({ selected, setSelected }) {
   );
 }
 
-export default TimeSlots;
+export default Timeslots;
