@@ -3,7 +3,7 @@ import Calendar from 'react-calendar';
 import './Calendar.css';
 import Modal from '../components/Modal';
 
-const ReactCalendar = () => {
+const SchedulingCalendar = () => {
   const [date, setDate] = useState(new Date());
   const [openModal, setOpenModal] = useState(false);
   const onOpenModal = date => {
@@ -17,13 +17,14 @@ const ReactCalendar = () => {
       {openModal && (
         <Modal
           closeModal={setOpenModal}
-          month={date.getMonth().toString()}
-          day={date.getDate().toString()}
-          year={date.getFullYear().toString()}
+          date={date}
+          // month={date.getMonth().toString()}
+          // day={date.getDate().toString()}
+          // year={date.getFullYear().toString()}
         />
       )}
     </div>
   );
 };
 
-export default ReactCalendar;
+export default SchedulingCalendar;
