@@ -32,7 +32,7 @@ function Confirm() {
         </div>
       </div>
     </div>
-    );
+  );
 }
 
 export default Confirm;

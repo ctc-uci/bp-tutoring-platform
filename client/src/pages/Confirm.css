@@ -34,8 +34,6 @@
   padding-top: px;
 }
 
-
-
 .confirmContainer .foot {
   display: flex;
   justify-content: right;
@@ -54,4 +52,3 @@
   cursor: pointer;
   font-family: 'Open Sans', sans-serif;
 }
-

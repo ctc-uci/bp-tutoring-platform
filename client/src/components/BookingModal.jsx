@@ -1,27 +1,26 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable guard-for-in */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable react/prop-types */
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const BookingModal = ({ closeModal, date }) => {
-  const timeslots = [];
+  const [timeslots, setTimeslots] = useState([]);
   useEffect(async () => {
-    const res = await axios.get(`http://localhost:3001/timeslots/${'placeholder email'}`);
-    if (res.status === 200) {
-      // really scuffed for loop and no useState for now, fix later
-      for (const timeslotsObjectIndex in res.data) {
-        for (const timeslotIndex in res.data[timeslotsObjectIndex].timeslots) {
-          const timeslot = res.data[timeslotsObjectIndex].timeslots[timeslotIndex];
-          if (date.getTime() <= timeslot && timeslot <= date.getTime() + 24 * 60 * 60 * 1000) {
-            timeslots.push(timeslot);
-          }
-        }
-      }
-      console.log(timeslots); // These are all in milliseconds after epoch, use native JS date object to convert
-    } else {
+    try {
+      const res = await axios.get(`http://localhost:3001/timeslots/${'placeholder email'}`);
+      const { data } = res;
+      setTimeslots(
+        data
+          .map(tss => tss.timeslots.map(t => [tss.email, t]))
+          .reduce((a, b) => [...a, ...b])
+          .filter(ts => date.getTime() <= ts[1] && ts[1] <= date.getTime() + 24 * 60 * 60 * 1000),
+      );
+    } catch (err) {
       console.log('unable to get timeslots');
     }
+    console.log(timeslots); // These are all in milliseconds after epoch, use native JS date object to convert
   }, []);
 
   return (
