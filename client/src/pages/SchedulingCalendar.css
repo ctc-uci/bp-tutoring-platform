@@ -1,0 +1,12 @@
+.calendar-bottom {
+  text-align: center;
+}
+
+.booking-page-btn {
+  margin: 20px;
+  background-color: #bea9ef;
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  cursor: pointer;
+  font-family: 'Open Sans', sans-serif;
+}

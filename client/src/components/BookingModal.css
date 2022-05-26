@@ -1,0 +1,23 @@
+.times {
+  overflow: scroll;
+}
+
+.time-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin: 10px;
+  background: #bea9ef;
+  border-radius: 10px;
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+}
+
+.book-button {
+  background-color: #876fc0;
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  cursor: pointer;
+  font-family: 'Open Sans', sans-serif;
+}

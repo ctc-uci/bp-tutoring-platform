@@ -1,8 +1,8 @@
 import React from 'react';
-import './Confirm.css';
+import './SchedulingConfirm.css';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-function Confirm() {
+function SchedulingConfirm() {
   const navigate = useNavigate();
   const times = useLocation();
   return (
@@ -12,7 +12,7 @@ function Confirm() {
           <h1>Success!</h1>
         </div>
         <div className="body">
-          Your appointment has been scheduled for:
+          You have created an availability between:
           <div className="date">
             Date: {times.state.date[0]}/{times.state.date[1]}/{times.state.date[2]}
           </div>
@@ -35,4 +35,4 @@ function Confirm() {
   );
 }
 
-export default Confirm;
+export default SchedulingConfirm;

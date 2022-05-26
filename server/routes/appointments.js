@@ -25,11 +25,12 @@ router.get('/', (req, res) => {
 // REQ BODY: Tutor email, student email, start time and end time (in seconds after epoch), appointment note optional
 // RETURNS: The newly created appointment object
 router.post('/', (req, res) => {
-  const { tutorEmail, studentEmail, startTime, endTime, note } = req.body;
-  if (!tutorEmail || !studentEmail || !startTime || !endTime || !note) {
+  const { startTime, endTime, note } = req.body;
+  console.log(req.body);
+  if (!startTime || !endTime || !note) {
     res.status(400).json({ error: 'Missing required fields' });
   }
-  Appointment.create({ tutorEmail, studentEmail, startTime, endTime, note }, (err, appt) => {
+  Appointment.create({ startTime, endTime, note }, (err, appt) => {
     if (err) {
       // console.log(err);
       res.status(400).json({ error: 'Error creating appointment' });
@@ -46,22 +47,14 @@ router.post('/', (req, res) => {
 //           the new appointment info (under a "new" object) to update a found appointment
 // RETURNS: Updated appointment object
 router.put('/', (req, res) => {
-  const { tutorEmail, studentEmail, startTime, endTime } = req.body.old;
-  const {
-    tutorEmail: newTutorEmail,
-    studentEmail: newStudentEmail,
-    startTime: newStartTime,
-    endTime: newEndTime,
-    note: newNote,
-  } = req.body.updated;
-  if (!tutorEmail || !studentEmail || !startTime || !endTime) {
+  const { startTime, endTime } = req.body.old;
+  const { startTime: newStartTime, endTime: newEndTime, note: newNote } = req.body.updated;
+  if (!startTime || !endTime) {
     res.status(400).json({ error: 'Missing required fields' });
   }
   Appointment.findOneAndUpdate(
-    { tutorEmail, studentEmail, startTime, endTime },
+    { startTime, endTime },
     {
-      tutorEmail: newTutorEmail,
-      studentEmail: newStudentEmail,
       startTime: newStartTime,
       endTime: newEndTime,
       note: newNote,
@@ -84,11 +77,11 @@ router.put('/', (req, res) => {
 // REQ BODY: Appointment's info (tutor email, student email, startTime and endTime (in seconds after epoch))
 // RETURNS: The deleted appointment object
 router.delete('/', (req, res) => {
-  const { tutorEmail, studentEmail, startTime, endTime } = req.body;
-  if (!tutorEmail || !studentEmail || !startTime || !endTime) {
+  const { startTime, endTime } = req.body;
+  if (!startTime || !endTime) {
     res.status(400).json({ error: 'Missing required fields' });
   }
-  Appointment.deleteOne({ tutorEmail, studentEmail, startTime, endTime }, (err, appt) => {
+  Appointment.deleteOne({ startTime, endTime }, (err, appt) => {
     if (err) {
       // console.log(err);
       res.status(400).json({ error: 'Error deleting appointment' });

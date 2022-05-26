@@ -3,16 +3,16 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Modal.css';
+import './SchedulingModal.css';
 import axios from 'axios';
-import Timeslots from './Timeslots';
+import TimeSlots from './TimeSlots';
 
-const Modal = ({ closeModal, date }) => {
+const SchedulingModal = ({ closeModal, date }) => {
   const navigate = useNavigate();
   const [startSelected, setStartSelected] = useState('Select Time:');
   const [endSelected, setEndSelected] = useState('Select Time:');
 
-  const scheduleTimeslot = async (timeslots, email) => {
+  const scheduleTimeSlot = async (timeslots, email) => {
     await axios.post('http://localhost:3001/timeslots', {
       timeslots,
       email,
@@ -25,7 +25,7 @@ const Modal = ({ closeModal, date }) => {
         <div className="head">
           <div className="title">
             <h1>
-              Time Selection: {date.getMonth() + 1}/{date.getDate()}/{date.getFullYear()}
+              Create Availability: {date.getMonth() + 1}/{date.getDate()}/{date.getFullYear()}
             </h1>
           </div>
           <div className="closeButton">
@@ -38,11 +38,11 @@ const Modal = ({ closeModal, date }) => {
         <div className="body">
           <div className="time-slots">
             <p>Session Start:</p>
-            <Timeslots selected={startSelected} setSelected={setStartSelected} />
+            <TimeSlots selected={startSelected} setSelected={setStartSelected} />
           </div>
           <div className="time-slots">
             <p>Session End:</p>
-            <Timeslots selected={endSelected} setSelected={setEndSelected} />
+            <TimeSlots selected={endSelected} setSelected={setEndSelected} />
           </div>
         </div>
         <div className="foot">
@@ -101,8 +101,8 @@ const Modal = ({ closeModal, date }) => {
                 clockIterator.setTime(clockIterator.getTime() + 1800000);
               }
 
-              scheduleTimeslot(listOfTimeSlots, 'placeholder email');
-              navigate('/confirm', {
+              scheduleTimeSlot(listOfTimeSlots, 'placeholder email');
+              navigate('/scheduling-confirm', {
                 state: {
                   date: [date.month, date.day, date.year],
                   startTime: startSelected,
@@ -119,4 +119,4 @@ const Modal = ({ closeModal, date }) => {
   );
 };
 
-export default Modal;
+export default SchedulingModal;

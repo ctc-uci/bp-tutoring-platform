@@ -4,10 +4,10 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useEffect, useState } from 'react';
-import './Timeslots.css';
+import './TimeSlots.css';
 import moment from 'moment';
 
-function Timeslots({ selected, setSelected }) {
+function TimeSlots({ selected, setSelected }) {
   const [timeSlots, setTimeSlots] = useState([]);
   const [isActive, setIsActive] = useState(false);
   const createTimeSlots = (fromTime, toTime) => {
@@ -53,4 +53,4 @@ function Timeslots({ selected, setSelected }) {
   );
 }
 
-export default Timeslots;
+export default TimeSlots;

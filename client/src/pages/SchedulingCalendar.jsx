@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 import './Calendar.css';
-import Modal from '../components/Modal';
+import SchedulingModal from '../components/SchedulingModal';
+import { useNavigate } from 'react-router-dom';
+import './SchedulingCalendar.css';
 
 const SchedulingCalendar = () => {
+  const navigate = useNavigate();
   const [date, setDate] = useState(new Date());
   const [openModal, setOpenModal] = useState(false);
   const onOpenModal = d => {
@@ -14,7 +17,17 @@ const SchedulingCalendar = () => {
   return (
     <div>
       <Calendar onClickDay={onOpenModal} value={date} />
-      {openModal && <Modal closeModal={() => setOpenModal(false)} date={date} />}
+      {openModal && <SchedulingModal closeModal={() => setOpenModal(false)} date={date} />}
+      <div className="calendar-bottom">
+        <button
+          className="booking-page-btn"
+          onClick={() => {
+            navigate('/bookings');
+          }}
+        >
+          BOOK A TIME
+        </button>
+      </div>
     </div>
   );
 };

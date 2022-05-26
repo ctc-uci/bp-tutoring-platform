@@ -2,16 +2,18 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SchedulingCalendar from './pages/SchedulingCalendar';
-import Confirm from './pages/Confirm';
-import Bookings from './pages/Bookings';
+import SchedulingConfirm from './pages/SchedulingConfirm';
+import BookingCalendar from './pages/BookingCalendar';
+import BookingConfirm from './pages/BookingConfirm';
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<SchedulingCalendar />} />
-        <Route path="confirm" element={<Confirm />} />
-        <Route path="bookings" element={<Bookings />} />
+        <Route path="scheduling-confirm" element={<SchedulingConfirm />} />
+        <Route path="booking-confirm" element={<BookingConfirm />} />
+        <Route path="bookings" element={<BookingCalendar />} />
         <Route path="*" element={<p>Error: Page Not Found</p>} />
       </Routes>
     </Router>
