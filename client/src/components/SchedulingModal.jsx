@@ -91,7 +91,7 @@ const SchedulingModal = ({ closeModal, date }) => {
               endDate.setHours(endHr);
               endDate.setMinutes(endMinutes);
 
-              if (startDate.getTime() > endDate.getTime()) {
+              if (startDate.getTime() >= endDate.getTime()) {
                 throw "Cannot book backwards time";
               }
 
