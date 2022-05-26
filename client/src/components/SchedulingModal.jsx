@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './SchedulingModal.css';
 import axios from 'axios';
-import TimeSlots from './Timeslots';
+import TimeSlots from './TimeSlots';
 
 const SchedulingModal = ({ closeModal, date }) => {
   const navigate = useNavigate();

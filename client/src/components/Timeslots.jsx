@@ -4,7 +4,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useEffect, useState } from 'react';
-import './Timeslots.css';
+import './TimeSlots.css';
 import moment from 'moment';
 
 function TimeSlots({ selected, setSelected }) {
