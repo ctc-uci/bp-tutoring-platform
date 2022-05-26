@@ -11,7 +11,7 @@
 }
 
 .confirmContainer {
-  width: 500px;
+  width: 600px;
   height: 300px;
   border-radius: 5px;
   background-color: white;
@@ -43,8 +43,8 @@
 }
 
 .confirmContainer .foot button {
-  width: 100px;
-  height: 45px;
+  width: 150px;
+  height: 60px;
   border: none;
   background-color: #bea9ef;
   color: white;
