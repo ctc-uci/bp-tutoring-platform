@@ -83,12 +83,17 @@ const SchedulingModal = ({ closeModal, date }) => {
                   endHr = 0;
                 }
               }
+
               const endMinutes = Number(endSelected.substr(3, 2));
 
               startDate.setHours(startHr);
               startDate.setMinutes(startMinutes);
               endDate.setHours(endHr);
               endDate.setMinutes(endMinutes);
+
+              if (startDate.getTime() > endDate.getTime()) {
+                throw "Cannot book backwards time";
+              }
 
               console.log(startDate);
               console.log(startDate.getTime());
@@ -106,7 +111,7 @@ const SchedulingModal = ({ closeModal, date }) => {
 
               navigate('/scheduling-confirm', {
                 state: {
-                  dateArray: [date.getMonth(), date.getDay(), date.getYear()],
+                  dateArray: [date.getMonth()+1, date.getDate(), date.getFullYear()],
                   startTime: startSelected,
                   endTime: endSelected,
                 },
