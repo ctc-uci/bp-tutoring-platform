@@ -51,6 +51,7 @@ const SchedulingModal = ({ closeModal, date }) => {
           </button>
           <button
             type="button"
+            hidden={!(startSelected !== 'Select Time:' && endSelected !== 'Select Time:')}
             onClick={() => {
               // Seconds after epoch
               // Date.getTime() should return this
@@ -100,11 +101,12 @@ const SchedulingModal = ({ closeModal, date }) => {
                 listOfTimeSlots.push(clockIterator.getTime());
                 clockIterator.setTime(clockIterator.getTime() + 1800000);
               }
-
+              console.log(date.getMonth());
               scheduleTimeSlot(listOfTimeSlots, 'placeholder email');
+
               navigate('/scheduling-confirm', {
                 state: {
-                  date: [date.month, date.day, date.year],
+                  dateArray: [date.getMonth(), date.getDay(), date.getYear()],
                   startTime: startSelected,
                   endTime: endSelected,
                 },
