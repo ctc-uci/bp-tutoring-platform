@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 //import './BookingConfirm.css';
 import { useNavigate, useLocation } from 'react-router-dom';

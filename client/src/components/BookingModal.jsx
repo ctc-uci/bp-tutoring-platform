@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 /* eslint-disable no-unused-vars */
 /* eslint-disable guard-for-in */
 /* eslint-disable no-restricted-syntax */
@@ -27,8 +28,7 @@ const BookingModal = ({ closeModal, date }) => {
   }, []);
 
   const convertUnixTime = unixTime => {
-    var formatted = moment(new Date(unixTime)).format('h:mm A');
-    return formatted;
+    return moment(new Date(unixTime)).format('h:mm A');
   };
 
   const bookTimeSlot = async (startTime, endTime, note) => {

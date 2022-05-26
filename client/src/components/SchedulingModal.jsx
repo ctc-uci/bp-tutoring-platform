@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './SchedulingModal.css';
 import axios from 'axios';
-import TimeSlots from './TimeSlots';
+import Timeslots from './Timeslots';
 
 const SchedulingModal = ({ closeModal, date }) => {
   const navigate = useNavigate();
@@ -38,11 +38,11 @@ const SchedulingModal = ({ closeModal, date }) => {
         <div className="body">
           <div className="time-slots">
             <p>Session Start:</p>
-            <TimeSlots selected={startSelected} setSelected={setStartSelected} />
+            <Timeslots selected={startSelected} setSelected={setStartSelected} />
           </div>
           <div className="time-slots">
             <p>Session End:</p>
-            <TimeSlots selected={endSelected} setSelected={setEndSelected} />
+            <Timeslots selected={endSelected} setSelected={setEndSelected} />
           </div>
         </div>
         <div className="foot">
