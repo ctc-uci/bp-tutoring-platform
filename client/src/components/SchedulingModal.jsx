@@ -106,7 +106,7 @@ const SchedulingModal = ({ closeModal, date }) => {
 
               navigate('/scheduling-confirm', {
                 state: {
-                  dateArray: [date.getMonth(), date.getDay(), date.getYear()],
+                  dateArray: [date.getMonth() + 1, date.getDate(), date.getFullYear()],
                   startTime: startSelected,
                   endTime: endSelected,
                 },
